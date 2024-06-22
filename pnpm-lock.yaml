@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@anatine/zod-openapi':
+    specifier: ^2.2.6
+    version: 2.2.6(openapi3-ts@4.3.3)(zod@3.23.8)
   '@mikro-orm/core':
     specifier: ^6.2.9
     version: 6.2.9
@@ -116,6 +119,17 @@ packages:
       zod: ^3.20.0
     dependencies:
       openapi3-ts: 2.0.2
+      ts-deepmerge: 6.2.1
+      zod: 3.23.8
+    dev: false
+
+  /@anatine/zod-openapi@2.2.6(openapi3-ts@4.3.3)(zod@3.23.8):
+    resolution: {integrity: sha512-Z5sr2Nq2xifEpPbPdUcvyl776LY652oR3VHMV++WFSmRrRL8RDP2XTkbuGn+vgfVNOD7UrndYwCWnxaiw7IZog==}
+    peerDependencies:
+      openapi3-ts: ^4.1.2
+      zod: ^3.20.0
+    dependencies:
+      openapi3-ts: 4.3.3
       ts-deepmerge: 6.2.1
       zod: 3.23.8
     dev: false
@@ -3021,6 +3035,12 @@ packages:
       yaml: 1.10.2
     dev: false
 
+  /openapi3-ts@4.3.3:
+    resolution: {integrity: sha512-LKkzBGJcZ6wdvkKGMoSvpK+0cbN5Xc3XuYkJskO+vjEQWJgs1kgtyUk0pjf8KwPuysv323Er62F5P17XQl96Qg==}
+    dependencies:
+      yaml: 2.4.5
+    dev: false
+
   /optionator@0.9.4:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
     engines: {node: '>= 0.8.0'}
@@ -3984,6 +4004,12 @@ packages:
   /yaml@1.10.2:
     resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
     engines: {node: '>= 6'}
+    dev: false
+
+  /yaml@2.4.5:
+    resolution: {integrity: sha512-aBx2bnqDzVOyNKfsysjA2ms5ZlnjSAW2eG3/L5G/CSujfjLJTJsEw1bGw8kCf04KodQWk1pxlGnZ56CRxiawmg==}
+    engines: {node: '>= 14'}
+    hasBin: true
     dev: false
 
   /yn@3.1.1:

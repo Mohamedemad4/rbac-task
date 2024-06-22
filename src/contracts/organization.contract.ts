@@ -6,6 +6,7 @@ const c = initContract();
 
 export const organizationContract = c.router({
   createRole: {
+    summary: "create role",
     headers: z.object({ authorization: z.string() }),
     method: "POST",
     path: "/api/organization/:orgId/role",
@@ -18,6 +19,7 @@ export const organizationContract = c.router({
     },
   },
   addUserToOrganization: {
+    summary: "Add user to organization",
     headers: z.object({ authorization: z.string() }),
     method: "POST",
     path: "/api/organization/:orgId/users",
@@ -29,6 +31,7 @@ export const organizationContract = c.router({
     },
   },
   removeUserFromOrganization: {
+    summary: "Remove User from organization",
     headers: z.object({ authorization: z.string() }),
     method: "DELETE",
     path: "/api/organization/:orgId/users",
@@ -38,6 +41,7 @@ export const organizationContract = c.router({
     },
   },
   listRoles: {
+    summary: "List roles owned by the organization",
     headers: z.object({ authorization: z.string() }),
     method: "GET",
     path: "/api/user/organization/:orgId/roles",
@@ -55,6 +59,7 @@ export const organizationContract = c.router({
     },
   },
   assignRoleToUser: {
+    summary: "Assign role to user",
     headers: z.object({ authorization: z.string() }),
     method: "POST",
     path: "/api/organization/:orgId/users/:userId/roles",
@@ -66,6 +71,7 @@ export const organizationContract = c.router({
     },
   },
   removeRoleFromUser: {
+    summary: "Remove role from user",
     headers: z.object({ authorization: z.string() }),
     method: "DELETE",
     path: "/api/organization/:orgId/users/:userId/roles",
