@@ -16,8 +16,7 @@ export const canActivate =
     const userRepo = DI.orm.em.getRepository(User);
     const allowedUserPermissions = (
       await userRepo.findPermissions(req.user.userId, req.params.orgId)
-    )[0].map((p) => p.slug);
-
+    ).map((p) => p.slug);
     if (allowedUserPermissions.includes(permissionsSlug)) {
       next();
     } else {

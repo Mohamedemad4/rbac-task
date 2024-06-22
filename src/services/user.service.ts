@@ -98,6 +98,9 @@ export class UserService {
     }
   }
   async listOrganizations(userId: string) {
-    return DI.userRepository.findOrgs(userId);
+    return (await DI.userRepository.findOrgs(userId)).map((o) => ({
+      id: o.id,
+      name: o.name,
+    }));
   }
 }

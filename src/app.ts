@@ -17,6 +17,8 @@ import { createExpressEndpoints } from "@ts-rest/express";
 import { MikroORM, RequestContext } from "@mikro-orm/postgresql";
 import express, { Express } from "express";
 import { generateOpenApi } from "@ts-rest/open-api";
+import { organizationContract } from "#contracts/organization.contract";
+import { organizationRouter } from "#routes/organization.routes";
 
 const app: Express = express();
 
@@ -54,8 +56,10 @@ export const init = (async () => {
   app.use((req, res, next) => RequestContext.create(DI.orm.em, next));
 
   createExpressEndpoints(userContract, userRouter, app);
+  createExpressEndpoints(organizationContract, organizationRouter, app);
 
   app.listen(env.PORT, () => {
-    console.log(`Started at http://localhost:${env.PORT}`);
+    console.log(`Started at http://0.0.0.0:${env.PORT}`);
+    console.log(`Documentation at http://0.0.0.0:${env.PORT}/api-docs`);
   });
 })();
