@@ -1,11 +1,4 @@
-import env from "#config/env";
 import { DI } from "../app";
-import { hash, compare } from "bcrypt";
-import { sign, verify, decode } from "jsonwebtoken";
-
-import { AlreadyExistsError } from "#errors/AlreadyExists";
-import { UnauthenticatedError } from "#errors/UnauthenticatedError";
-import { randomUUID } from "crypto";
 import { BadRequestError } from "#errors/BadRequestError";
 import { SYSTEM_PERMISSIONS } from "#config/PERMISSIONS";
 
