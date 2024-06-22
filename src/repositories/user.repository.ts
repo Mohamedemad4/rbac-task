@@ -1,27 +1,29 @@
-import { EntityRepository } from "@mikro-orm/postgresql";
 import { User } from "./models/user.model";
-import { OrganizationUser } from "./relations/organization-user.relation";
-import { OrganizationUserRole } from "./relations/organization-role-user.relation";
+import { EntityRepository } from "@mikro-orm/postgresql";
+import { UserRoleAssignment } from "./relations/user-role-assignment.relation";
 
 export class UserRepository extends EntityRepository<User> {
   async findOrgs(userId: string) {
-    const userOrgs = await this.em.findAll(OrganizationUser, {
-      where: { user: { id: userId } },
-    });
-    return userOrgs.map((u) => u.org);
-  }
+    const orgs = await this.findOneOrFail(
+      { id: userId },
+      { populate: ["organizations"] },
+    );
 
-  async findRoles(userId: string, orgId: string) {
-    const userRoles = await this.em.findAll(OrganizationUserRole, {
-      where: { user: { id: userId }, org: { id: orgId } },
-    });
-    return userRoles.map((r) => r.role);
+    console.log(orgs.organizations.map((o) => o));
+    return orgs.organizations;
   }
 
   async findPermissions(userId: string, orgId: string) {
-    const userRoles = await this.em.findAll(OrganizationUserRole, {
-      where: { user: { id: userId }, org: { id: orgId } },
-    });
-    return userRoles.map((r) => r.role.permissions).flat();
+    const permissionSlugs = (
+      await this.em.findAll(UserRoleAssignment, {
+        where: { org: { id: orgId }, user: { id: userId } },
+        populate: ["role.permissions"],
+      })
+    )
+      .map((assignment) => assignment.role.permissions)
+      .map((p) => p.map((a) => a))
+      .flat();
+
+    return permissionSlugs;
   }
 }

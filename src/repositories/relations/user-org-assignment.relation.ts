@@ -1,10 +1,10 @@
-import { Entity, PrimaryKey, ManyToOne, Unique } from "@mikro-orm/core";
 import { User } from "../models/user.model";
 import { Organization } from "../models/organization.model";
+import { Entity, PrimaryKey, ManyToOne, Unique } from "@mikro-orm/core";
 
 @Entity()
 @Unique({ properties: ["org", "user"] })
-export class OrganizationUser {
+export class UserOrgAssignment {
   @PrimaryKey()
   id!: string;
 

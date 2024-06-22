@@ -1,11 +1,14 @@
 import {
+  Collection,
   Entity,
   EntityRepositoryType,
+  ManyToMany,
   PrimaryKey,
   Property,
   Unique,
 } from "@mikro-orm/core";
 import { UserRepository } from "../user.repository";
+import { Organization } from "./organization.model";
 
 @Entity({ repository: () => UserRepository })
 export class User {
@@ -23,4 +26,7 @@ export class User {
 
   @Property()
   password!: string;
+
+  @ManyToMany()
+  organizations: Collection<Organization> = new Collection<Organization>(this);
 }
