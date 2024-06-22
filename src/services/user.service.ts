@@ -61,7 +61,6 @@ export class UserService {
           }),
         };
       } else {
-        console.log("compare returned false");
         throw new UnauthenticatedError();
       }
     } catch (e) {

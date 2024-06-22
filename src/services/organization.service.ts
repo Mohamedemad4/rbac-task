@@ -39,8 +39,8 @@ export class OrganizationService {
     name: string,
     permissions: SYSTEM_PERMISSIONS[],
   ) {
-    DI.roleRepository.createRole(orgId, name, permissions);
-    DI.orm.em.flush();
+    await DI.roleRepository.createRole(orgId, name, permissions);
+    await DI.orm.em.flush();
   }
 
   async listUsers(orgId: string) {
